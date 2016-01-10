@@ -4,7 +4,7 @@
         <title>Top SPIEGEL nouns of {{ date }}</title>
     </head>
     <ol>
-    {% for top in tops %}
+    {% for top in tops -%}
       <li>
         <div>
             {{ top['translation']['original'] }}
@@ -12,7 +12,7 @@
         </div>
         <div >{{ top['translation']['type'] }}</div>
         <ol>
-            {% for translation in top['translation']['translations'] %}
+            {% for translation in top['translation']['translations'] -%}
             <li>
                 <div>
                     <span>{{ translation['text'] }}</span>
@@ -23,12 +23,12 @@
                 <div>
                     <span>{{ example }}</span>
                 </div>
-                {% endfor %}
+                {% endfor -%}
             </li>
-            {% endfor %}
+            {% endfor -%}
         </ol>
 
       </li>
-    {% endfor %}
+    {% endfor -%}
     </ol>
 </html>
