@@ -1,4 +1,4 @@
-from _datetime import datetime
+from datetime import datetime
 from collections import Counter
 from contextlib import closing
 from re import findall
@@ -6,7 +6,7 @@ from re import split
 from re import sub
 from urllib import request
 
-import translator
+from word_collector.translator import Translator
 from jinja2 import Environment, PackageLoader
 from lxml import etree
 from lxml import html
@@ -79,10 +79,10 @@ def get_article_words(lines):
 
 
 if __name__ == '__main__':
-    db = Database('C:\\Users\\Alexander\\Documents\\db.json')
+    db = Database('db.json')
     today = datetime.now().strftime('%d/%m/%Y')
 
-    yt = translator.Translator()
+    yt = Translator()
     main_counter = Counter()
 
     for url in list_article_urls():

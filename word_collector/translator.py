@@ -18,6 +18,22 @@ class Translator(object):
     def __init__(self, api_key=TRANSLATOR_KEY):
         self.api_key = api_key
 
+    @staticmethod
+    def _prepare_example(examples):
+        """ Turns structured example response into a simple list or strings.
+        Each example is formatted as FOREIGN_PHRASE — TRANSLATION
+        """
+
+        if not examples:
+            return examples
+
+        prepared_examples = []
+        for example in examples:
+            example = '%s — %s' % (example['text'], example['tr'][0]['text'])
+            prepared_examples.append(example)
+
+        return prepared_examples
+
     def translate(self, text):
         translate_request = self.REQUEST_TEMPLATE.format(
             api_key=self.api_key, text=quote(text, encoding='utf-8'))
@@ -34,10 +50,11 @@ class Translator(object):
                 type_ = translation.get('pos', None)
                 original = translation.get('text', None)
                 translations = translation.get('tr', [])
-                translations = [{'type': e['pos'],
-                                 'text': e['text'],
-                                 'example': e.get('ex', None)}
-                                for e in translations]
+                translations = [
+                    {'type': e['pos'],
+                     'text': e['text'],
+                     'example': Translator._prepare_example(e.get('ex', None))}
+                    for e in translations]
                 return TranslatedWord(gender, type_, original, translations)
         except Exception as e:
             return e

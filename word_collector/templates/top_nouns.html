@@ -17,6 +17,13 @@
                 <div>
                     <span>{{ translation['text'] }}</span>
                 </div>
+                {% set examples = translation.get('example') -%}
+                {% set examples = examples if examples else [] -%}
+                {% for example in examples -%}
+                <div>
+                    <span>{{ example }}</span>
+                </div>
+                {% endfor %}
             </li>
             {% endfor %}
         </ol>
