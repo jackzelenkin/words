@@ -97,7 +97,7 @@ if __name__ == '__main__':
         db.insert_translation(word, yt.translate)
         db.insert_or_update_counter(count, word, today)
 
-    top = db.get_top_words_of_the_day(today, type='noun', n=5)
+    top = db.get_top_words_of_the_day(today, type='noun', n=10)
     env = Environment(loader=PackageLoader('word_collector', 'templates'))
     template = env.get_template('top_nouns.html')
     with open('top_nouns.html', 'w', encoding='utf-8') as file:
