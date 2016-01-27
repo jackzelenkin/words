@@ -78,13 +78,12 @@ def get_article_words(lines):
     return word_counter
 
 
-if __name__ == '__main__':
+def main():
     db = Database('db.json')
     today = datetime.now().strftime('%d/%m/%Y')
 
     yt = Translator()
     main_counter = Counter()
-
     for url in list_article_urls():
         lines = get_article_lines(url)
         log.info('Got %d lines for %s', len(lines), url)
@@ -102,3 +101,6 @@ if __name__ == '__main__':
     template = env.get_template('top_nouns.html')
     with open('top_nouns.html', 'w', encoding='utf-8') as file:
         file.write(template.render(tops=top, date=today))
+        
+if __name__ == '__main__':
+    main()

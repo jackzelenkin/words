@@ -8,9 +8,12 @@
       <li>
         <div>
             {{ top['translation']['original'] }}
-            <span>{{ top['translation']['gender'] }}</span>
+            {% set gender = top['translation']['gender'] -%}
+            {% set type = top['translation']['type'] -%}
+            {% set gender = gender if gender else ('?' if type == 'noun' else '') -%}
+            <span>{{ gender }}</span>
         </div>
-        <div >{{ top['translation']['type'] }}</div>
+        <div >{{ type }}</div>
         <ol>
             {% for translation in top['translation']['translations'] -%}
             <li>
