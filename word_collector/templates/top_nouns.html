@@ -2,6 +2,7 @@
     <head>
         <meta charset="utf-8">
         <title>Top SPIEGEL nouns of {{ date }}</title>
+        <link rel="stylesheet" href="static/text.css">
     </head>
     <ol>
     {% for top in tops -%}
@@ -11,20 +12,20 @@
             {% set gender = top['translation']['gender'] -%}
             {% set type = top['translation']['type'] -%}
             {% set gender = gender if gender else ('?' if type == 'noun' else '') -%}
-            <span>{{ gender }}</span>
+            <span class=dictionary-mark>{{ gender }}</span>
         </div>
-        <div >{{ type }}</div>
+        <div class=word-type>{{ type }}</div>
         <ol>
             {% for translation in top['translation']['translations'] -%}
             <li>
                 <div>
-                    <span>{{ translation['text'] }}</span>
+                    <span class=dictionary-meaning>{{ translation['text'] }}</span>
                 </div>
                 {% set examples = translation.get('example') -%}
                 {% set examples = examples if examples else [] -%}
                 {% for example in examples -%}
                 <div>
-                    <span>{{ example }}</span>
+                    <span class=dictionary-example>{{ example }}</span>
                 </div>
                 {% endfor -%}
             </li>

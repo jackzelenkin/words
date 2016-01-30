@@ -1,0 +1,18 @@
+.dictionary-meaning {
+    color: #669;
+}
+
+.word-type {
+    color: #070;
+}
+
+.dictionary-example {
+    color: #777;
+    list-style: none;
+    margin-left: 1em;
+}
+
+.dictionary-mark {
+    color: #9a9a9a;
+    font-style: italic;
+}

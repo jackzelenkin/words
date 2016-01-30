@@ -19,6 +19,9 @@ NUMBER_OF_TOP_WORDS = 100
 log = create_logger(__name__)
 
 
+class ArticleExtractor(object):
+    pass
+
 def list_article_urls():
     """ This method lists urls in an rss feed.
     Returns:
