@@ -4,6 +4,9 @@
         <title>Top SPIEGEL nouns of {{ date }}</title>
         <link rel="stylesheet" href="static/text.css">
     </head>
+    {% for link in links -%}
+        {{ link }}
+    {% endfor -%}
     <ol>
     {% for top in tops -%}
       <li>

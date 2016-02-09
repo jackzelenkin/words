@@ -99,11 +99,18 @@ def main():
         db.insert_translation(word, yt.translate)
         db.insert_or_update_counter(count, word, today)
 
-    top = db.get_top_words_of_the_day(today, type='noun', n=10)
-    env = Environment(loader=PackageLoader('word_collector', 'templates'))
-    template = env.get_template('top_nouns.html')
-    with open('top_nouns.html', 'w', encoding='utf-8') as file:
-        file.write(template.render(tops=top, date=today))
-        
+    
+    types = ('noun', 'verb')
+    
+    def prepare_links():
+        return ['<a href="top_{0}s.html">{0}s</a>'.format(t) for t in types]
+    
+    for type in types:
+        top = db.get_top_words_of_the_day(today, type=type, n=10)
+        env = Environment(loader=PackageLoader('word_collector', 'templates'))
+        template = env.get_template('top_nouns.html')
+        with open('top_%ss.html' % type, 'w', encoding='utf-8') as file:
+            file.write(template.render(tops=top, date=today, links=prepare_links()))
+
 if __name__ == '__main__':
     main()

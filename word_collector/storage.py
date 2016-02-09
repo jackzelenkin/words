@@ -47,7 +47,8 @@ class Database(object):
             self.db.insert(counter)
 
     def get_top_words_of_the_day(self, date_str, type=None, n=10):
-        counters = self.db.search(where('date') == date_str)
+        query = Query()
+        counters = self.db.search(query.date == date_str)
         for counter in counters:
             query = Query()
             result = self.db.search(
