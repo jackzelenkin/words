@@ -100,7 +100,7 @@ def main():
         db.insert_or_update_counter(count, word, today)
 
     
-    types = ('noun', 'verb')
+    types = ('noun', 'verb', 'adjective')
     
     def prepare_links():
         return ['<a href="top_{0}s.html">{0}s</a>'.format(t) for t in types]
